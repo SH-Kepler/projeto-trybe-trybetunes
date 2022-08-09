@@ -9,6 +9,7 @@ class PageAlbum extends React.Component {
     super();
     this.state = {
       MusicCard: [],
+      loading: false,
     };
   }
 
@@ -19,16 +20,20 @@ class PageAlbum extends React.Component {
     console.log(musics);
   }
 
-  // favoriteMusic = ({ target }) => {
-  //   const { MusicCard } = this.state;
-  //   addSong(target);
-  // }
+  favoriteMusic = async (music) => {
+    this.setState({
+      loading: true,
+    });
+    await addSong(music);
+    this.setState({ loading: false });
+  }
 
   render() {
-    const { MusicCard } = this.state;
+    const { MusicCard, loading } = this.state;
     return (
       <div data-testid="page-album">
         <Header />
+        {loading && <p>Carregando...</p>}
         {MusicCard.length !== 0 && <img src={ MusicCard[0].artworkUrl100 } alt="img" />}
         {MusicCard.length !== 0
         && <h3 data-testid="artist-name">{ MusicCard[0].artistName }</h3>}
@@ -55,7 +60,7 @@ class PageAlbum extends React.Component {
                 data-testid={ `checkbox-music-${music.trackId}` }
                 type="checkbox"
                 id="checkbox"
-                onClick={ () => addSong(music) }
+                onChange={ () => this.favoriteMusic(music) }
               />
             </label>
           )}
