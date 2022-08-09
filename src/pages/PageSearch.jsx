@@ -24,6 +24,7 @@ class PageSearch extends React.Component {
     this.setState({ inputValueHunter: inputValue });
     this.setState({ inputValue: '' });
     const data = await searchAlbumsAPI(inputValue);
+    console.log(data);
     this.setState({ isLoading: false });
     if (data.length > 0) {
       this.setState({ music: data });
