@@ -1,7 +1,7 @@
 // Requisito 9 com dicas do giovani, brabo de mais!
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
 
 class CardOfMusics extends React.Component {
   constructor() {
@@ -24,7 +24,11 @@ class CardOfMusics extends React.Component {
       favorited: !favorited,
       loading: true,
     });
-    await addSong(musi);
+    if (!favorited) {
+      await addSong(musi);
+    } else {
+      await removeSong(musi);
+    }
     this.setState({ loading: false });
   }
 
