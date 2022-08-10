@@ -2,69 +2,51 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
-import { addSong } from '../services/favoriteSongsAPI';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import CardOfMusics from '../components/CardOfMusics';
 
 class PageAlbum extends React.Component {
   constructor() {
     super();
     this.state = {
       MusicCard: [],
-      loading: false,
+      artistName: '',
+      album: '',
+      albumImg: '',
+      favoriteList: [],
     };
   }
 
   async componentDidMount() {
     const { match: { params: { id } } } = this.props;
-    const musics = await getMusics(id);
-    this.setState({ MusicCard: musics });
-    console.log(musics);
-  }
-
-  favoriteMusic = async (music) => {
+    const tracks = await getMusics(id);
+    const favorites = await getFavoriteSongs();
+    const trackIds = favorites.map((track) => track.trackId);
+    const image = tracks[0].artworkUrl100;
+    const musics = tracks.filter((track) => tracks.indexOf(track) && track);
     this.setState({
-      loading: true,
+      artistName: tracks[0].artistName,
+      album: tracks[0].collectionName,
+      albumImg: image,
+      MusicCard: musics,
+      favoriteList: trackIds,
     });
-    await addSong(music);
-    this.setState({ loading: false });
   }
 
   render() {
-    const { MusicCard, loading } = this.state;
+    const { MusicCard, artistName, album, albumImg, favoriteList } = this.state;
     return (
       <div data-testid="page-album">
         <Header />
-        {loading && <p>Carregando...</p>}
-        {MusicCard.length !== 0 && <img src={ MusicCard[0].artworkUrl100 } alt="img" />}
-        {MusicCard.length !== 0
-        && <h3 data-testid="artist-name">{ MusicCard[0].artistName }</h3>}
-        {MusicCard.length !== 0
-        && <h3 data-testid="album-name">{ MusicCard[0].collectionName }</h3>}
-        {MusicCard.map((music) => (
-          <div key={ music.trackId ? music.trackId : music.artistId }>
-            <p>{ music.trackName }</p>
-            { music.trackId
-            && (
-              <audio data-testid="audio-component" src={ music.previewUrl } controls>
-                <track kind="captions" />
-                O seu navegador não suporta o elemento
-                {' '}
-                <code>audio</code>
-                .
-              </audio>
-            )}
-            {music.trackId
-          && (
-            <label htmlFor="checkbox">
-              Favorita
-              <input
-                data-testid={ `checkbox-music-${music.trackId}` }
-                type="checkbox"
-                id="checkbox"
-                onChange={ () => this.favoriteMusic(music) }
-              />
-            </label>
-          )}
-          </div>
+        <img src={ albumImg } alt={ album } />
+        <h2 data-testid="artist-name">{artistName}</h2>
+        <h3 data-testid="album-name">{album}</h3>
+        {MusicCard.map((music, i) => (
+          <CardOfMusics
+            key={ i }
+            musi={ music }
+            favoritedProp={ favoriteList.some((id) => id === music.trackId) }
+          />
         ))}
       </div>
     );
