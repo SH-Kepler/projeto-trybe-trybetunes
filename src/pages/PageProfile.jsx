@@ -36,7 +36,7 @@ class PageProfile extends React.Component {
     return (
       <div data-testid="page-profile">
         <Header />
-        <Link to="/profile/edit" data-testid="link-to-profile">Editar perfil</Link>
+        <Link to="/profile/edit">Editar perfil</Link>
         {isLoading === true ? <p>Carregando...</p> : (
           <div>
             <img data-testid="profile-image" src={ img } alt={ name } />
