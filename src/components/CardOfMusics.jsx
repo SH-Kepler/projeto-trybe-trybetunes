@@ -25,12 +25,16 @@ class CardOfMusics extends React.Component {
       favorited: !favorited,
       loading: true,
     });
+    document.location.reload(true);
     if (!favorited) {
       await addSong(musi);
     } else {
       await removeSong(musi);
     }
     this.setState({ loading: false });
+    this.setState({
+      favorited: !favorited,
+    });
   }
 
   render() {
