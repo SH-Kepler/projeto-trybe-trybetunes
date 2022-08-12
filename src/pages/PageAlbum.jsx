@@ -5,16 +5,18 @@ import getMusics from '../services/musicsAPI';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import CardOfMusics from '../components/CardOfMusics';
 
+const inittialState = {
+  MusicCard: [],
+  artistName: '',
+  album: '',
+  albumImg: '',
+  favoriteList: [],
+};
 class PageAlbum extends React.Component {
   constructor() {
     super();
-    this.state = {
-      MusicCard: [],
-      artistName: '',
-      album: '',
-      albumImg: '',
-      favoriteList: [],
-    };
+
+    this.state = inittialState;
   }
 
   async componentDidMount() {

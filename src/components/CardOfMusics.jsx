@@ -3,14 +3,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
 
+const inittialState = {
+  loading: false,
+  favorited: false,
+};
 class CardOfMusics extends React.Component {
   constructor() {
     super();
 
-    this.state = {
-      loading: false,
-      favorited: false,
-    };
+    this.state = inittialState;
   }
 
   componentDidMount() {
@@ -45,9 +46,7 @@ class CardOfMusics extends React.Component {
                 <audio data-testid="audio-component" src={ musi.previewUrl } controls>
                   <track kind="captions" />
                   O seu navegador não suporta o elemento
-                  {' '}
                   <code>audio</code>
-                  .
                 </audio>
                 <label htmlFor="fav">
                   Favorita
@@ -61,7 +60,6 @@ class CardOfMusics extends React.Component {
               </div>
             )
         }
-        ;
       </div>
     );
   }
