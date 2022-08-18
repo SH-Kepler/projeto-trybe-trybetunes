@@ -26,7 +26,9 @@ class PageFavorites extends React.Component {
       <div data-testid="page-favorites">
         <Header />
         <div>
-          <h1>Músicas Favoritas:</h1>
+          <div className="titleFavorites">
+            <h1>Músicas Favoritas:</h1>
+          </div>
           {favoriteList.map((music, i) => (
             <CardOfMusics
               key={ i }

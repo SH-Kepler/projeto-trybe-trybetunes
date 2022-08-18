@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.containerLogo {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 3.5%;
+  align-items: center;
+  background-image: linear-gradient(to right, #00339b, #00cff7, #00339b);
+  color: azure;
+}
+
+.containerNav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.linkHeader {
+  width: 100%;
+  padding-inline: 13%;
+  padding-block: 7px;
+  color: azure;
+  background-color: #07004D;
+  text-decoration: none;
+}
+
+.linkHeader:hover {
+  background-color: #06004d87;
+  font-size: 15px;
+}
+
+.logo {
+  width: 100px;
+}

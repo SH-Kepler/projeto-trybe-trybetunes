@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/Profile.css';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import { getUser } from '../services/userAPI';
@@ -26,7 +27,7 @@ class PageProfile extends React.Component {
       name: data.name,
       email: data.email,
       description: data.description,
-      img: data.image,
+      img: data.image === '' ? 'https://www.promoview.com.br/uploads/images/unnamed%2819%29.png' : data.image,
       isLoading: false,
     });
   }
@@ -36,15 +37,33 @@ class PageProfile extends React.Component {
     return (
       <div data-testid="page-profile">
         <Header />
-        <Link to="/profile/edit">Editar perfil</Link>
-        {isLoading === true ? <p>Carregando...</p> : (
-          <div>
-            <img data-testid="profile-image" src={ img } alt={ name } />
-            <h2>{ name }</h2>
-            <p>{ email }</p>
-            <p>{ description }</p>
-          </div>
-        )}
+        <div className="displayProfile">
+          {isLoading === true ? <span className="loading" /> : (
+            <div className="profile">
+              <img data-testid="profile-image" src={ img } alt={ name } />
+              <p className="name">
+                name:
+                {' '}
+                { name }
+              </p>
+              <p className="email">
+                email:
+                {' '}
+                { email }
+              </p>
+              <div className="displayDescription">
+                <p className="description">
+                  description:
+                  {' '}
+                  { description }
+                </p>
+              </div>
+              <div className="displayLink">
+                <Link className="buttonProfile" to="/profile/edit">Editar perfil</Link>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

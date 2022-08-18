@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background-image: radial-gradient(rgb(0, 0, 75), black, rgb(0, 0, 75));
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(80, 0, 89, 0.392);
+  border-radius: 20px;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-image: radial-gradient(#60c8f5, #e0f1f8);
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/CardOfMusics.css';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
@@ -40,9 +41,11 @@ class PageAlbum extends React.Component {
     return (
       <div data-testid="page-album">
         <Header />
-        <img src={ albumImg } alt={ album } />
-        <h2 data-testid="artist-name">{artistName}</h2>
-        <h3 data-testid="album-name">{album}</h3>
+        <div className="MainAlbum">
+          <h2 data-testid="artist-name">{artistName}</h2>
+          <img className="imagem" src={ albumImg } alt={ album } />
+          <h3 className="texto" data-testid="album-name">{album}</h3>
+        </div>
         {MusicCard.map((music, i) => (
           <CardOfMusics
             key={ i }

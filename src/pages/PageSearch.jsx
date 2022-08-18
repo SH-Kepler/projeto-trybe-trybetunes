@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/PageSearch.css';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
@@ -63,32 +64,43 @@ class PageSearch extends React.Component {
     const { inputValue, isDisabled, isLoading,
       music, realArtist, inputValueHunter } = this.state;
     return (
-      <div data-testid="page-search">
+      <div className="PageSearch" data-testid="page-search">
         { isLoading ? <div>Carregando...</div>
           : (
             <div>
               <Header />
-              <form onSubmit={ this.searchArtist }>
-                <input
-                  value={ inputValue }
-                  name="inputValue"
-                  onChange={ this.handleChange }
-                  data-testid="search-artist-input"
-                  placeholder="Nome do Artista"
-                  type="text"
-                />
-                <button
-                  disabled={ isDisabled }
-                  data-testid="search-artist-button"
-                  type="submit"
-                >
-                  Pesquisar
-                </button>
+              <form className="formPageSearch" onSubmit={ this.searchArtist }>
+                <div>
+                  <input
+                    className="inputPageSearch"
+                    value={ inputValue }
+                    name="inputValue"
+                    onChange={ this.handleChange }
+                    data-testid="search-artist-input"
+                    placeholder="Nome do Artista"
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <button
+                    className="buttonPageSearch"
+                    disabled={ isDisabled }
+                    data-testid="search-artist-button"
+                    type="submit"
+                  >
+                    Pesquisar
+                  </button>
+                </div>
               </form>
               {realArtist === false && music.length === 0
-              && <p>Nenhum álbum foi encontrado</p>}
-              {music.length > 0 ? <p>{`Resultado de álbuns de: ${inputValueHunter}`}</p>
-                : null }
+              && <p className="failSearch">Nenhum álbum foi encontrado</p>}
+              {music.length > 0 && (
+                <p
+                  className="resultsSearch"
+                >
+                  {`Resultado de álbuns de: ${inputValueHunter}`}
+
+                </p>)}
               {music.map((element) => (
                 <Link
                   to={ `/album/${element.collectionId}` }
@@ -97,11 +109,19 @@ class PageSearch extends React.Component {
                   key={ `${element.artistId}
                   ${element.collectionId}` }
                 >
-                  <img src={ element.artworkUrl100 } alt="artworkUrl100" />
-                  <p>{element.collectionName}</p>
-                  <p>{element.collectionPrice}</p>
-                  <p>{element.releaseDate}</p>
-                  <p>{element.trackCount}</p>
+                  <div className="containerCollections">
+                    <div>
+                      <img
+                        className="imgCollections"
+                        src={ element.artworkUrl100 }
+                        alt="artworkUrl100"
+                      />
+                    </div>
+                    <div className="collectionInformations">
+                      <p className="collectionName">{element.collectionName}</p>
+                      <p className="artistName">{ element.artistName }</p>
+                    </div>
+                  </div>
                 </Link>
               ))}
             </div>

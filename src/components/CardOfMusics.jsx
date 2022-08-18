@@ -1,5 +1,6 @@
 // Requisito 9 com dicas do giovani, brabo de mais!
 import React from 'react';
+import '../css/CardOfMusics.css';
 import PropTypes from 'prop-types';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
 
@@ -25,7 +26,7 @@ class CardOfMusics extends React.Component {
       favorited: !favorited,
       loading: true,
     });
-    document.location.reload(true);
+    // document.location.reload(true);
     if (!favorited) {
       await addSong(musi);
     } else {
@@ -41,26 +42,37 @@ class CardOfMusics extends React.Component {
     const { loading, favorited } = this.state;
     const { musi } = this.props;
     return (
-      <div>
+      <div className="previousMusicCard">
         {
-          loading ? <p>Carregando...</p>
+          loading ? <span className="loadingCardMUsic" />
             : (
-              <div>
-                <p>{ musi.trackName }</p>
-                <audio data-testid="audio-component" src={ musi.previewUrl } controls>
-                  <track kind="captions" />
-                  O seu navegador não suporta o elemento
-                  <code>audio</code>
-                </audio>
-                <label htmlFor="fav">
-                  Favorita
-                  <input
-                    data-testid={ `checkbox-music-${musi.trackId}` }
-                    type="checkbox"
-                    onChange={ () => this.favoriteMusic(musi) }
-                    checked={ favorited }
-                  />
-                </label>
+              <div className="musicCard">
+                <p className="musicTitle">{ musi.trackName }</p>
+                <div className="trackMusic">
+                  <audio
+                    className="audio"
+                    data-testid="audio-component"
+                    src={ musi.previewUrl }
+                    controls
+                  >
+                    <track kind="captions" />
+                    O seu navegador não suporta o elemento
+                    <code>audio</code>
+                  </audio>
+                  <div className="field-checkbox1">
+                    <input
+                      className="field"
+                      id={ musi.trackId }
+                      data-testid={ `checkbox-music-${musi.trackId}` }
+                      type="checkbox"
+                      onChange={ () => this.favoriteMusic(musi) }
+                      checked={ favorited }
+                    />
+                    <label className="description" htmlFor={ musi.trackId }>
+                      {' '}
+                    </label>
+                  </div>
+                </div>
               </div>
             )
         }
