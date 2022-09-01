@@ -40,26 +40,28 @@ class PageProfile extends React.Component {
         <div className="displayProfile">
           {isLoading === true ? <span className="loading" /> : (
             <div className="profile">
-              <img data-testid="profile-image" src={ img } alt={ name } />
-              <p className="name">
-                name:
-                {' '}
-                { name }
-              </p>
-              <p className="email">
-                email:
-                {' '}
-                { email }
-              </p>
-              <div className="displayDescription">
-                <p className="description">
-                  description:
-                  {' '}
-                  { description }
-                </p>
-              </div>
-              <div className="displayLink">
+              <div className="displayInit">
+                <img data-testid="profile-image" src={ img } alt={ name } />
                 <Link className="buttonProfile" to="/profile/edit">Editar perfil</Link>
+              </div>
+              <div className="displayInformations">
+                <p className="name">
+                  name:
+                  {' '}
+                  { name }
+                </p>
+                <p className="email">
+                  email:
+                  {' '}
+                  { email }
+                </p>
+                <div className="displayDescription">
+                  <p className="description">
+                    description:
+                    {' '}
+                    { description }
+                  </p>
+                </div>
               </div>
             </div>
           )}
