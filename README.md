@@ -16,7 +16,7 @@ This is a Web application made by me, where I make a request in the Itunes API, 
   <summary><strong>Como executar o projeto</strong></summary><br />
   1. Clone o repositório
 
-  - Use o comando: `git clone git@github.com:[EDITÁVEL]`.
+  - Use o comando: `git clone git@github.com:SH-Kepler/projeto-trybe-trybetunes---belltunes.git`.
 
   1. Instale as dependências
 
@@ -30,7 +30,7 @@ This is a Web application made by me, where I make a request in the Itunes API, 
     - Exemplo: `git checkout master`
   - Agora crie uma branch à qual você vai submeter os `commits` do seu projeto
     - Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
-    - Exemplo: `git checkout -b joaozinho-project-belltunes`
+    - Exemplo: `git checkout -b mioh-project-belltunes`
 </details>
 
 <details>
