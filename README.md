@@ -29,7 +29,6 @@ This is a Web application made by me, where I make a request in the Itunes API, 
   - Se não estiver, mude para a branch `master`
     - Exemplo: `git checkout master`
   - Agora crie uma branch à qual você vai submeter os `commits` do seu projeto
-    - Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
     - Exemplo: `git checkout -b mioh-project-belltunes`
 </details>
 
