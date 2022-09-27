@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/app-toot-name/static/css/main.527a29b2.css",
+    "main.js": "/app-toot-name/static/js/main.bfa6883c.js",
+    "static/media/BellTunes.png": "/app-toot-name/static/media/BellTunes.50fb1868f232fc731ffc.png",
+    "static/media/logo.png": "/app-toot-name/static/media/logo.4bc4e70ba301f2881322.png",
+    "index.html": "/app-toot-name/index.html",
+    "main.527a29b2.css.map": "/app-toot-name/static/css/main.527a29b2.css.map",
+    "main.bfa6883c.js.map": "/app-toot-name/static/js/main.bfa6883c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.527a29b2.css",
+    "static/js/main.bfa6883c.js"
+  ]
+}
